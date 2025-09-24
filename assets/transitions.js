@@ -110,6 +110,114 @@ function improveScrollBehavior() {
     });
 }
 
+// Função para criar e gerenciar menu hamburger mobile
+function initMobileMenu() {
+    // Criar botão hamburger se não existir
+    const header = document.querySelector('.header section');
+    if (!header) return;
+
+    // Verifica se já existe o botão
+    let hamburgerBtn = document.querySelector('.hamburger-menu');
+    if (!hamburgerBtn) {
+        hamburgerBtn = document.createElement('button');
+        hamburgerBtn.className = 'hamburger-menu';
+        hamburgerBtn.innerHTML = `
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        `;
+        hamburgerBtn.setAttribute('aria-label', 'Abrir menu');
+        
+        // Adiciona o botão após o logo
+        const logo = header.querySelector('.logo');
+        if (logo) {
+            logo.insertAdjacentElement('afterend', hamburgerBtn);
+        } else {
+            header.prepend(hamburgerBtn);
+        }
+    }
+
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    // Adiciona classe para identificar o menu mobile
+    navbar.classList.add('mobile-nav');
+
+    // Função para alternar menu
+    function toggleMenu() {
+        const isOpen = navbar.classList.contains('nav-open');
+        
+        if (isOpen) {
+            // Fechar menu
+            navbar.classList.remove('nav-open');
+            hamburgerBtn.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-label', 'Abrir menu');
+            document.body.classList.remove('menu-open');
+        } else {
+            // Abrir menu
+            navbar.classList.add('nav-open');
+            hamburgerBtn.classList.add('active');
+            hamburgerBtn.setAttribute('aria-label', 'Fechar menu');
+            document.body.classList.add('menu-open');
+        }
+    }
+
+    // Event listener para o botão hamburger
+    hamburgerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Fechar menu ao clicar em um link
+    const navLinks = navbar.querySelectorAll('a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbar.classList.contains('nav-open')) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Fechar menu ao clicar fora dele
+    document.addEventListener('click', (e) => {
+        const isClickInsideNav = navbar.contains(e.target);
+        const isClickOnHamburger = hamburgerBtn.contains(e.target);
+        
+        if (!isClickInsideNav && !isClickOnHamburger && navbar.classList.contains('nav-open')) {
+            toggleMenu();
+        }
+    });
+
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navbar.classList.contains('nav-open')) {
+            toggleMenu();
+        }
+    });
+
+    // Gerenciar menu baseado no tamanho da tela
+    function handleResize() {
+        const isMobile = window.innerWidth <= 767;
+        
+        if (isMobile) {
+            hamburgerBtn.style.display = 'flex';
+            navbar.classList.add('mobile-nav');
+        } else {
+            hamburgerBtn.style.display = 'none';
+            navbar.classList.remove('mobile-nav', 'nav-open');
+            hamburgerBtn.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+    }
+
+    // Inicializar baseado no tamanho atual
+    handleResize();
+
+    // Listener para redimensionamento
+    window.addEventListener('resize', handleResize);
+}
+
 // Função principal que inicializa tudo
 function initTransitions() {
     // Aguarda o DOM estar completamente carregado
@@ -119,12 +227,14 @@ function initTransitions() {
             initPageTransitions();
             animateHeader();
             improveScrollBehavior();
+            initMobileMenu();
         });
     } else {
         initScrollAnimations();
         initPageTransitions();
         animateHeader();
         improveScrollBehavior();
+        initMobileMenu();
     }
 }
 
