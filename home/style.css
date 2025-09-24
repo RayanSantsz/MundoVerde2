@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --main-color: #d3ad7f;  /* Cor principal (dourado/café) */
+    --black: #13131a;       /* Preto escuro personalizado */
+    --bg: #010103;          /* Cor de fundo principal (preto quase total) */
+    --border: 0.1rem solid rgba(255,255,255,0.3);  /* Borda padrão translúcida */
+    font-size: 10px;        /* Tamanho base da fonte (para cálculos rem) */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: none;
+    transition: 0.2s linear;
+    font-family: "Roboto", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+section {
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    scroll-margin-top: 80px;
+}
+
+/* ========================================
+   CABEÇALHO (HEADER) DO SITE
+   ======================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    background-color: var(--bg);
+}
+
+.header section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.navbar a{
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.navbar a:hover{
+    color: var(--main-color);
+    border-bottom: 0.1rem solid var(--main-color);
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+/* ========================================
+   MAIN DO SITE
+   ======================================== */
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+.home-container section,
+.home-container .content {
+    position: relative;
+    z-index: 1;
+}
+
+.home-container section {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.content {
+    max-width: 60rem;
+}
+
+.content h3 {
+    color: #fff;
+    font-size: 6rem;
+}
+
+.content p {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 100;
+    line-height: 1.8;
+    padding: 1rem 0rem;
+}
+
+ footer {
+      background-color: #000; /* fundo preto */
+      padding: 20px 30px;
+    }
+
+    footer h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    footer hr {
+      border: 0;
+      border-top: 1px solid #444; /* linha fina cinza */
+      margin: 10px 0 20px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      max-width: 600px; /* largura máxima igual ao modelo */
+    }
+
+    .footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .footer-column a {
+      text-decoration: none;
+      color: #999; /* cinza claro */
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .footer-column a:hover {
+      color: #fff; /* destaque no hover */
+    }
