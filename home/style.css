@@ -29,6 +29,109 @@ html {
 
 body {
     background-color: var(--bg);
+    overflow-x: hidden; /* Evita scroll horizontal nas animações */
+}
+
+/* ========================================
+   ANIMAÇÕES DE ENTRADA SUAVE
+   ======================================== */
+
+/* Estado inicial dos elementos (invisíveis) */
+.fade-in,
+.slide-up,
+.slide-down,
+.slide-left,
+.slide-right {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-up {
+    transform: translateY(50px);
+}
+
+.slide-down {
+    transform: translateY(-50px);
+}
+
+.slide-left {
+    transform: translateX(50px);
+}
+
+.slide-right {
+    transform: translateX(-50px);
+}
+
+/* Estados ativos (quando elementos ficam visíveis) */
+.fade-in.active,
+.slide-up.active,
+.slide-down.active,
+.slide-left.active,
+.slide-right.active {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Animação para o carregamento inicial da página */
+.page-transition {
+    opacity: 0;
+    animation: pageLoad 1s ease-out forwards;
+}
+
+@keyframes pageLoad {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Efeito de overlay para transição entre páginas */
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--black) 100%);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.page-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Animação com delay escalonado para múltiplos elementos */
+.delay-1 { 
+    animation-delay: 0.1s; 
+    transition-delay: 0.1s;
+}
+.delay-2 { 
+    animation-delay: 0.2s; 
+    transition-delay: 0.2s;
+}
+.delay-3 { 
+    animation-delay: 0.3s; 
+    transition-delay: 0.3s;
+}
+.delay-4 { 
+    animation-delay: 0.4s; 
+    transition-delay: 0.4s;
+}
+.delay-5 { 
+    animation-delay: 0.5s; 
+    transition-delay: 0.5s;
+}
+.delay-6 { 
+    animation-delay: 0.6s; 
+    transition-delay: 0.6s;
+}
+.delay-7 { 
+    animation-delay: 0.7s; 
+    transition-delay: 0.7s;
 }
 
 section {
@@ -156,3 +259,32 @@ section {
     .footer-column a:hover {
       color: #fff; /* destaque no hover */
     }
+
+/* Fallback para garantir que o footer seja sempre visível */
+footer .fade-in,
+footer .slide-up,
+footer .slide-down,
+footer .slide-left,
+footer .slide-right {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: footerFadeIn 1s ease-out;
+}
+
+/* Especificidade extra para garantir visibilidade */
+footer .footer-column,
+footer .footer-column a {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+@keyframes footerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

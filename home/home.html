@@ -10,13 +10,13 @@
 
 <body>
 
-    <header class="header">
+    <header class="header slide-down">
         <section>
-            <a href="#" class="logo">
+            <a href="#" class="logo fade-in delay-1">
                 <img src="/assets/MundoVede.png" alt="Logo">
             </a>
 
-            <nav class="navbar">
+            <nav class="navbar fade-in delay-2">
                 <a href="/home/home.html">Home</a>
                 <a href="/about/about.html">Sobre</a>
                 <a href="/receitas/receitas.html">Receitas</a>
@@ -34,9 +34,9 @@
             </video>
 
             <section id="home">
-                <div class="content">
-                    <h3>A ARTE DO CHÁ</h3>
-                    <p>Seja bem-vindo ao refúgio dos devs que amam boas infusões! Nossa loja une o universo da
+                <div class="content slide-up delay-3">
+                    <h3 class="slide-right delay-4">A ARTE DO CHÁ</h3>
+                    <p class="fade-in delay-5">Seja bem-vindo ao refúgio dos devs que amam boas infusões! Nossa loja une o universo da
                         programação com blends exclusivos que transformam cada pausa em um momento de reinicialização
                         mental. Porque todo bom código merece ser escrito com uma xícara de chá ao lado.</p>
                 </div>
@@ -48,20 +48,23 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="fade-in">
         <h2>MUNDO VERDE</h2>
         <hr>
         <div class="footer-content">
-            <div class="footer-column">
+            <div class="footer-column slide-up delay-1">
                 <a href="#">DESENVOLVEDOR</a>
                 <a href="#">CONTATO</a>
             </div>
-            <div class="footer-column">
+            <div class="footer-column slide-up delay-2">
                 <a href="#">PROJETOS</a>
                 <a href="#">LINKEDIN</a>
             </div>
         </div>
     </footer>
+
+    <!-- Script para transições suaves -->
+    <script src="/assets/transitions.js"></script>
 </body>
 
 </html>
